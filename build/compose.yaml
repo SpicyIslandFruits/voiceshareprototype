@@ -1,0 +1,14 @@
+name: pixivpresentation
+
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: pixivpresentation_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user_password
+    ports:
+      - 3306:3306
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql

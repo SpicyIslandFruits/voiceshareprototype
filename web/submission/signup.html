@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>pixiv・presentation／登録フォーム (presentation)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        form {
+            max-width: 600px;
+            margin: auto;
+            padding: 1em;
+            border: 1px solid #ccc;
+            border-radius: 1em;
+        }
+
+        div {
+            margin-bottom: 1em;
+        }
+
+        label {
+            margin-bottom: .5em;
+            color: #333333;
+            display: block;
+            font-size: 0.9em;
+        }
+
+        input, textarea {
+            border: 1px solid #CCCCCC;
+            padding: .5em;
+            font-size: 1em;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 0.7em;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 0.3em;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .terms-warning {
+            color: red;
+            font-weight: bold;
+        }
+
+        .bank-info {
+            border: 1px solid #ccc;
+            padding: 1em;
+            border-radius: 0.5em;
+        }
+    </style>
+</head>
+<body>
+<h2>pixiv・presentation／登録フォーム (presentation)</h2>
+<!--TODO: jsでfetchするからいらん気がする-->
+<form id="myForm" action="handle-signup.php" method="post" enctype="multipart/form-data">
+    <div>
+        <label for="name">氏名:</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+    <div>
+        <label for="furigana">ふりがな:</label>
+        <input type="text" id="furigana" name="furigana" required>
+    </div>
+    <div>
+        <label for="address">住所:</label>
+        <input type="text" id="address" name="address" required>
+    </div>
+    <div>
+        <label for="email">メールアドレス:</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+    <div>
+        <label for="tel">電話番号:</label>
+        <input type="tel" id="tel" name="tel" required>
+    </div>
+    <div>
+        <label for="id_image">身分証画像:</label>
+        <input type="file" id="id_image" name="id_image" accept="image/*" required>
+    </div>
+    <div>
+        <label for="selfPromotion">自己PR(500文字以内):</label>
+        <input type="text" id="selfPromotion" name="selfPromotion" required>
+    </div>
+    <div class="bank-info">
+        <h3>出演料振込口座</h3>
+        <div>
+            <label for="bankName">金融機関名:</label>
+            <input type="text" id="bankName" name="bankName" required>
+        </div>
+        <div>
+            <label for="branchName">支店名:</label>
+            <input type="text" id="branchName" name="branchName" required>
+        </div>
+        <div>
+            <label for="accountNumber">口座番号:</label>
+            <input type="text" id="accountNumber" name="accountNumber" required>
+        </div>
+    </div>
+    <h2>登録における著約事項</h2>
+    <div class="terms">
+        <p class="terms-warning">必ず全項目を熟読し、了承の上、下のボタンをクリックしてください</p>
+        <p>①案件、登録サイトに関する守秘事項は一切漏洩しません。</p>
+        <p>②和弊社指定のスタジオ以外 (自宅での収録等) で収録し音源を納品する場合、指定された納期限を厳守します。</p>
+        <p>③和弊社指定でのスタジオでの収録の場合、その収録日時の失意はしません。</p>
+        <p>
+            ④pixivpresentationからの案件以来に際して、所属事務所等とのトラブルの一切は自身の責任で対応し、貴社に迷惑、損害をかけません。</p>
+        <p>
+            ⑤上記規約内容を遵守し、また、自身の行動が原因でpixivpresentationの信用を毀損した場合は、相当額の損害賠償の支払いに応じます。</p>
+    </div>
+    <button type="submit">上記著約事項のすべてを承諾することを確認し、申込します</button>
+</form>
+<script>
+    document.getElementById("myForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(event.target);
+
+        setTimeout(() => {
+            window.location.href = 'thankyou.html';
+        }, 1000);
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "handle-signup.php", true);
+        xhr.send(formData);
+    });
+</script>
+</body>
+</html>
