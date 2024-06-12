@@ -21,3 +21,5 @@ Web application specific components: static web assets, server side templates an
 
 1. `cd ./build && docker compose up`
 2. `php -S 0.0.0.0:8000`
+
+notifyのためには、 25番ポートが開いておりstarttlsができる転送用メールサーバーが必要
